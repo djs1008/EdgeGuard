@@ -1,0 +1,106 @@
+# STM32CubeIDE / Eclipse
+.metadata/
+.settings/
+.project
+.cproject
+.mxproject
+Debug/
+Release/
+STM32CubeIDE/
+*.launch
+*.su
+*.cyclo
+*.d
+*.o
+*.obj
+*.elf
+*.axf
+*.map
+*.list
+*.hex
+*.bin
+
+# STM32CubeMX backups and local metadata
+*.ioc.bak
+*.bak
+
+# Keil MDK
+Objects/
+Listings/
+RTE/_Build/
+*.uvguix.*
+*.uvoptx
+*.uvprojx.bak
+*.dep
+*.lnp
+*.htm
+*.crf
+*.iex
+*.tra
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+CTestTestfile.cmake
+Makefile
+compile_commands.json
+build/
+out/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.venv/
+venv/
+env/
+dist/
+*.egg-info/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# VS Code (保留可共享的推荐配置时可按需取消对应规则)
+.vscode/
+*.code-workspace
+
+# Windows / editors / temporary files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+~$*
+
+# Logs and local runtime data
+*.log
+logs/
+.env
+.env.*
+!.env.example
+
+# Large/local datasets and generated ML artifacts
+ml/datasets/raw/
+ml/datasets/processed/
+ml/datasets/interim/
+ml/artifacts/
+ml/checkpoints/
+*.tflite
+*.onnx
+*.h5
+*.pt
+*.pth
+
