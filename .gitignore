@@ -1,25 +1,19 @@
-# STM32CubeIDE / Eclipse
-.metadata/
-.settings/
-.project
-.cproject
-.mxproject
+# STM32CubeIDE build outputs
 Debug/
 Release/
-STM32CubeIDE/
-*.launch
-*.su
-*.cyclo
-*.d
-*.o
-*.obj
+*/Debug/
+*/Release/
+
 *.elf
-*.axf
 *.map
 *.list
-*.hex
-*.bin
+*.o
+*.d
+*.su
+*.cyclo
 
+# IDE workspace metadata should not be committed
+.metadata/
 # STM32CubeMX backups and local metadata
 *.ioc.bak
 *.bak
