@@ -12,6 +12,12 @@ Release/
 *.su
 *.cyclo
 
+# STM32CubeIDE machine-generated language index settings
+**/.settings/language.settings.xml
+
+# STM32CubeIDE local peripheral-register view settings
+**/.settings/com.st.stm32cube.ide.mcu.sfrview.prefs
+
 # IDE workspace metadata should not be committed
 .metadata/
 # STM32CubeMX backups and local metadata
