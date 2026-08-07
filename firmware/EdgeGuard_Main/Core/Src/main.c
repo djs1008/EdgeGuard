@@ -98,14 +98,20 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  if(HAL_GPIO_ReadPin(USER_BUTTON_GPIO_Port, USER_BUTTON_Pin) == GPIO_PIN_SET)
+	  static GPIO_PinState last_button_state = GPIO_PIN_RESET;
+
+	  GPIO_PinState current_button_state = HAL_GPIO_ReadPin(USER_BUTTON_GPIO_Port, USER_BUTTON_Pin);
+	  if(current_button_state == GPIO_PIN_SET && last_button_state == GPIO_PIN_RESET)
 	  {
-		  HAL_GPIO_WritePin(USER_LED_GPIO_Port, USER_LED_Pin, GPIO_PIN_RESET);
+		  HAL_Delay(20);
+		  if(HAL_GPIO_ReadPin(USER_BUTTON_GPIO_Port, USER_BUTTON_Pin) == GPIO_PIN_SET)
+		  {
+			  HAL_GPIO_TogglePin(USER_LED_GPIO_Port, USER_LED_Pin);
+		  }
 	  }
-	  else
-	  {
-		  HAL_GPIO_WritePin(USER_LED_GPIO_Port, USER_LED_Pin, GPIO_PIN_SET);
-	  }
+
+	  last_button_state = current_button_state;
+
 	  HAL_Delay(10);
   }
   /* USER CODE END 3 */
