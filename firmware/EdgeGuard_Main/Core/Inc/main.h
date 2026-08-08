@@ -61,6 +61,8 @@ void Error_Handler(void);
 #define USER_BUTTON_GPIO_Port GPIOA
 #define USER_LED_Pin GPIO_PIN_1
 #define USER_LED_GPIO_Port GPIOA
+#define DS18B20_DQ_Pin GPIO_PIN_0
+#define DS18B20_DQ_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
