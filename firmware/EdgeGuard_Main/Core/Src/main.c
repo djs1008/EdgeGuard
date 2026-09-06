@@ -18,10 +18,13 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "i2c.h"
 #include "gpio.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "ds18b20.h"
+#include "adxl345.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -42,7 +45,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+ADXL345_Data accel;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -85,8 +88,15 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_I2C1_Init();
+
   /* USER CODE BEGIN 2 */
   DS18B20_Init();
+  if (ADXL345_Init() != HAL_OK)
+  {
+      Error_Handler();
+  }
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -97,6 +107,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+/*
   float temperature = DS18B20_ReadTemperature();
 
   if (temperature > 30.0f)
@@ -114,8 +125,16 @@ int main(void)
 
   HAL_Delay(500);
   }
+*/
+  if (ADXL345_ReadData(&accel) != HAL_OK)
+  {
+	  Error_Handler();
+  }
+
+  HAL_Delay(100);
+  }
   /* USER CODE END 3 */
-}
+ }
 
 /**
   * @brief System Clock Configuration
