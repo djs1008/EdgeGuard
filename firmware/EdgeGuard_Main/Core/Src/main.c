@@ -25,6 +25,7 @@
 /* USER CODE BEGIN Includes */
 #include "ds18b20.h"
 #include "adxl345.h"
+#include "ina219.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -46,6 +47,7 @@
 
 /* USER CODE BEGIN PV */
 ADXL345_Data accel;
+INA219_Data power_data;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -92,11 +94,10 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
   DS18B20_Init();
-  if (ADXL345_Init() != HAL_OK)
+  if (INA219_Init() != HAL_OK)
   {
       Error_Handler();
   }
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -126,16 +127,22 @@ int main(void)
   HAL_Delay(500);
   }
 */
-  if (ADXL345_ReadData(&accel) != HAL_OK)
+/*  if (ADXL345_ReadData(&accel) != HAL_OK)
   {
 	  Error_Handler();
   }
 
   HAL_Delay(100);
+*/
+  if (INA219_ReadData(&power_data) != HAL_OK)
+  {
+	  Error_Handler();
   }
-  /* USER CODE END 3 */
- }
 
+  HAL_Delay(100);
+  /* USER CODE END 3 */
+  }
+}
 /**
   * @brief System Clock Configuration
   * @retval None
