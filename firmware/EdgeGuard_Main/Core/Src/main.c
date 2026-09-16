@@ -30,7 +30,12 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+typedef enum
+{
+    FAN_NORMAL = 0,
+    FAN_WARNING,
+    FAN_STALL
+} FanState;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -48,6 +53,8 @@
 /* USER CODE BEGIN PV */
 ADXL345_Data accel;
 INA219_Data power_data;
+FanState fan_state = FAN_NORMAL;
+static uint8_t overcurrent_count = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -139,6 +146,43 @@ int main(void)
 	  Error_Handler();
   }
 
+  if (power_data.current > 0.16f)
+  {
+      if (overcurrent_count < 5)
+      {
+          overcurrent_count++;
+      }
+  }
+  else
+  {
+      overcurrent_count = 0;
+  }
+
+  if (overcurrent_count == 0)
+  {
+      fan_state = FAN_NORMAL;
+  }
+  else if (overcurrent_count < 5)
+  {
+      fan_state = FAN_WARNING;
+  }
+  else
+  {
+      fan_state = FAN_STALL;
+  }
+
+  if (fan_state == FAN_STALL)
+  {
+      HAL_GPIO_WritePin(USER_LED_GPIO_Port,
+                        USER_LED_Pin,
+                        GPIO_PIN_RESET);
+  }
+  else
+  {
+      HAL_GPIO_WritePin(USER_LED_GPIO_Port,
+                        USER_LED_Pin,
+                        GPIO_PIN_SET);
+  }
   HAL_Delay(100);
   /* USER CODE END 3 */
   }
